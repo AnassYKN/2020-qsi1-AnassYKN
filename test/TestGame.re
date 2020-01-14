@@ -68,7 +68,7 @@ describe("Test Game transitions", ({test}) => {
              let loveFifteen = {playerOne: Love, playerTwo: Fifteen};
              let loveThirty = {playerOne: Love, playerTwo: Thirty};
              expect.equal(
-                   scoreWhenPoints(loveFifteen, PlayerOne),
+                   scoreWhenPoints(loveFifteen, PlayerTwo),
                    Points(loveThirty)
              );
     });

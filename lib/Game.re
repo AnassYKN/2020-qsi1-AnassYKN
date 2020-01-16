@@ -35,6 +35,10 @@ let other = player =>
         | PlayerTwo => PlayerOne
 };
 
+let scoreWhenAdvantage: (player, player) => score =
+  (advantagedPlayer, winner) =>
+    advantagedPlayer == winner ? Game(winner) : Deuce;
+
 let incrementPoint: point => option(point) =
   point =>
     switch point {

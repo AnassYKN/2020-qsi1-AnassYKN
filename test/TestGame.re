@@ -1,7 +1,8 @@
 open Framework;
 open TennisKata.Game;
 
-describe("Test Game transitions", ({test}) => {
+describe("Test Game transitions", ({test}) => 
+{
     test("Given PlayerOne then PlayerTwo is different", ({expect}) => {
     expect.notEqual(PlayerOne, PlayerTwo);
     });
@@ -20,10 +21,10 @@ describe("Test Game transitions", ({test}) => {
         ({expect}) => {
             let advantagedPlayer = PlayerOne;
             let winner = other(advantagedPlayer);
-            expect.equal(
-                    scoreWhenAdvantage(advantagedPlayer, winner),
-                    Deuce,
-            );
+                expect.equal(
+                scoreWhenAdvantage(advantagedPlayer, winner),
+                Deuce,
+                );
     });
 
     test("Given player: 40 when wins then score is Game for this player",
@@ -111,7 +112,7 @@ describe("Test Game transitions", ({test}) => {
     test("string_of_point when player point is Fifteen",
                  ({expect}) => {
                    expect.equal(
-                     string_of_point(Love),
+                     string_of_point(Fifteen),
                      "15"
                    );
            });
@@ -119,14 +120,15 @@ describe("Test Game transitions", ({test}) => {
     test("string_of_point when player point is thirty",
                  ({expect}) => {
                    expect.equal(
-                     string_of_point(Love),
+                     string_of_point(Thirty),
                      "30"
                    );
            });
+
     test("string_of_point when player point is Forty",
                   ({expect}) => {
                     expect.equal(
-                      string_of_point(Love),
+                      string_of_point(Forty),
                       "40"
                     );
            });
@@ -135,11 +137,45 @@ describe("Test Game transitions", ({test}) => {
         ({expect}) => {
           let pointsPlayers = {playerOne: Love, playerTwo: Thirty};
           expect.equal(
-            string_of_score(Points(pointsData)),
+            string_of_score(Points(pointsPlayers)),
             "( Player One == 0 ) | ( Player Two == 30 )"
           );
       });
 
+      test("string_of_score when it is Forty",
+        ({expect}) => {
+          let fortyData = { {player: PlayerOne, otherPlayerPoint:Thirty} } ;
+          expect.equal(
+            string_of_score(Forty(fortyData)),
+            "( Player One == 40 ) | (Player Two == 30 )"
+          );
+      });
+
+      test("string_of_score when it is Deuce",
+        ({expect}) => {
+          expect.equal(
+            string_of_score(Deuce),
+            "Equality 40"
+          );
+      });
+
+      test("string_of_score when it is Advantage",
+        ({expect}) => {
+        let advantagePlayer = PlayerOne;
+          expect.equal(
+            string_of_score(Advantage(advantagePlayer)),
+            "Advantage to Player One"
+          );
+      });
+
+      test("string_of_score when its annonced the winner of the game",
+        ({expect}) => {
+        let winnerPlayer = PlayerOne;
+          expect.equal(
+            string_of_score(Advantage(winnerPlayer)),
+            "Advantage to Player One"
+          );
+      });
 });
 
 
